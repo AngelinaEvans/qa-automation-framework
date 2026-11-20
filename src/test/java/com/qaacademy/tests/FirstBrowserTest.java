@@ -1,15 +1,34 @@
 package com.qaacademy.tests;
 
 import com.qaacademy.base.BaseTest;
+import com.qaacademy.pages.HomePage;
 import org.testng.annotations.Test;
+import org.testng.Assert;
+
 
 public class FirstBrowserTest extends BaseTest {
 
     @Test
-    public void openBrowser() {
+    public void verifyHomePageTitle() {
 
-        page.navigate("https://automationexercise.com");
+        HomePage homePage = new HomePage(page);
 
-        page.waitForTimeout(5000);
+        homePage.open();
+
+        homePage.waitForHomeLink();
+
+        String actualTitle = homePage.getPageTitle();
+
+
+        Assert.assertEquals(
+                actualTitle,
+                "Automation Exercise",
+                "Homepage title is incorrect!"
+        );
+
+        Assert.assertTrue(
+                homePage.isHomeLinkVisible(),
+                "Home link is not visible!"
+        );
     }
 }
