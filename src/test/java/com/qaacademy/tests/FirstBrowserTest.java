@@ -4,6 +4,7 @@ import com.qaacademy.base.BaseTest;
 import com.qaacademy.pages.HomePage;
 import org.testng.annotations.Test;
 import org.testng.Assert;
+import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
 
 public class FirstBrowserTest extends BaseTest {
@@ -14,6 +15,8 @@ public class FirstBrowserTest extends BaseTest {
         HomePage homePage = new HomePage(page);
 
         homePage.open();
+
+        homePage.isHomeLinkVisible();
 
         homePage.waitForHomeLink();
 
